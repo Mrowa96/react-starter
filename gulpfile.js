@@ -73,7 +73,7 @@ gulp.task('scripts', () => {
         }
     };
 
-    return gulp.src('./src/assets/scripts/index.js')
+    return gulp.src('./src/assets/scripts/app.js')
         .pipe(webpack(webpackConfig))
         .pipe(gulp.dest('dist/assets/scripts/'))
         .pipe(browserSync.stream());
@@ -124,6 +124,7 @@ gulp.task('watch', () => {
 
 if (dev()) {
     gulp.task('default', [
+        'fonts',
         'styles',
         'scripts',
         'images',
@@ -133,6 +134,7 @@ if (dev()) {
     ]);
 } else {
     gulp.task('default', [
+        'fonts',
         'styles',
         'scripts',
         'images',

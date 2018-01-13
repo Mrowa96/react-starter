@@ -1,5 +1,7 @@
 export class App {
-    constructor(name = 'Test application') {
-        document.write(name);
+    constructor(name = 'Scripts works!') {
+        console.log(name);
     }
 }
+
+new App();
