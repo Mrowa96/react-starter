@@ -1,8 +1,8 @@
-#Front Boilerplate Template
+#Frontend Boilerplate
 
 ### Requirements
 - nodejs >= 8.9.1
-- npm -> 5.5.1
+- npm >= 5.5.1
 
 ### Init
 - `npm i` or `npm install` 
