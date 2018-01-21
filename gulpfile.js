@@ -1,4 +1,3 @@
-/* eslint-disable */
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const env = require('gulp-environments');
@@ -65,6 +64,9 @@ gulp.task('scripts', () => {
                                         }
                                     }
                                 ]
+                            ],
+                            'plugins': [
+                                'transform-class-properties'
                             ]
                         }
                     }

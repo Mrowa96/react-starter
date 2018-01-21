@@ -4,4 +4,6 @@ export class App {
     }
 }
 
-new App();
+document.addEventListener('DOMContentLoaded', () => {
+    window.app = new App();
+});
