@@ -4,3 +4,4 @@ node_modules
 dist
 src/assets/images/sprites.png
 src/assets/styles/_sprites.scss
+src/assets/styles/_icons.scss
