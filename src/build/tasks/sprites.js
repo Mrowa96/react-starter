@@ -5,7 +5,7 @@ const imagemin = require('gulp-imagemin');
 const merge = require('merge-stream');
 const env = require('gulp-environments');
 
-module.exports = function (src) {
+module.exports = (src) => {
     const spriteData = gulp.src(src)
         .pipe(spritesmith({
             imgName: 'sprites.png',

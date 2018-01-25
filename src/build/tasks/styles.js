@@ -5,7 +5,7 @@ const env = require('gulp-environments');
 const browserSync = require('browser-sync');
 const sass = require('gulp-sass');
 
-module.exports = function (src) {
+module.exports = (src) => {
     return gulp.src(src)
         .pipe(env.development(sourcemaps.init()))
         .pipe(sass().on('error', sass.logError))

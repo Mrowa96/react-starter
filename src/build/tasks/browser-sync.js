@@ -1,6 +1,6 @@
 const browserSync = require('browser-sync');
 
-module.exports = function () {
+module.exports = () => {
     return browserSync({
         server: {
             baseDir: './dist'

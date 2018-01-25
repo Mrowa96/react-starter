@@ -4,7 +4,7 @@ const iconfont = require('gulp-iconfont');
 const iconfontCss = require('gulp-iconfont-css');
 const browserSync = require('browser-sync');
 
-module.exports = function (src) {
+module.exports = (src) => {
     return gulp.src(src)
         .pipe(iconfontCss({
             fontName: 'tavoite',

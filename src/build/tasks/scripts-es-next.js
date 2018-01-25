@@ -2,8 +2,15 @@ const gulp = require('gulp');
 const webpack = require('webpack-stream');
 const env = require('gulp-environments');
 const browserSync = require('browser-sync');
+const uglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-module.exports = function (src) {
+module.exports = (src) => {
+    const webpackPlugins = [];
+
+    if (env.production()) {
+        webpackPlugins.push(new uglifyJsPlugin());
+    }
+
     const webpackConfig = {
         'watch': env.development(),
         'output': {'filename': 'app.js'},
@@ -29,13 +36,14 @@ module.exports = function (src) {
                                 ]
                             ],
                             'plugins': [
-                                'transform-class-properties'
+                                'transform-class-properties',
                             ]
                         }
                     }
                 }
             ]
-        }
+        },
+        'plugins': webpackPlugins
     };
 
     return gulp.src(src)
