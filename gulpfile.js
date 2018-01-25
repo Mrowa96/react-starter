@@ -1,133 +1,92 @@
 const gulp = require('gulp');
-const sass = require('gulp-sass');
 const env = require('gulp-environments');
-const sourcemaps = require('gulp-sourcemaps');
-const cleanCss = require('gulp-clean-css');
-const browserSync = require('browser-sync');
-const twig = require('gulp-twig');
-const htmlBeautify = require('gulp-html-beautify');
-const spritesmith = require('gulp.spritesmith');
-const buffer = require('vinyl-buffer');
-const imagemin = require('gulp-imagemin');
-const merge = require('merge-stream');
-const webpack = require('webpack-stream');
-const prod = env.production;
-const dev = env.development;
 
-gulp.task('fonts', () => {
-    return gulp.src(['./node_modules/font-awesome/fonts/**.*'])
-        .pipe(gulp.dest('dist/assets/fonts'))
-        .pipe(dev(browserSync.stream()));
-});
+const tasks = {
+    fonts: require('./src/build/tasks/fonts'),
+    styles: require('./src/build/tasks/styles'),
+    images: require('./src/build/tasks/images'),
+    scripts: {
+        esNext: require('./src/build/tasks/scripts-es-next')
+    },
+    sprites: require('./src/build/tasks/sprites'),
+    templates: {
+        twig: require('./src/build/tasks/templates-twig')
+    },
+    browserSync: require('./src/build/tasks/browser-sync'),
+};
+const sources = {
+    fonts: [
+        './node_modules/font-awesome/fonts/**.*'
+    ],
+    styles: './src/assets/styles/**/*.scss',
+    scripts: './src/assets/scripts/app.js',
+    images: './src/assets/images/*.*',
+    sprites: './src/assets/images/sprites/*.{png,jpg}',
+    templates: {
+        all: 'src/templates/**/*.twig',
+        pages: './src/templates/page/*.twig'
+    }
+};
 
-gulp.task('images', ['sprites'], () => {
-    return gulp.src('./src/assets/images/*.*')
-        .pipe(gulp.dest('dist/assets/images'))
-        .pipe(dev(browserSync.stream()));
-});
+/**
+ * Copy external fonts from e.g. node_modules.
+ */
+gulp.task('fonts', () => tasks.fonts(sources.fonts));
 
-gulp.task('styles', ['sprites'], () => {
-    return gulp.src('./src/assets/styles/**/*.scss')
-        .pipe(dev(sourcemaps.init()))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(prod(cleanCss({
-            compatibility: 'ie11',
-            restructuring: false,
-            processImport: false
-        })))
-        .pipe(dev(sourcemaps.write('./')))
-        .pipe(gulp.dest('./dist/assets/styles'))
-        .pipe(dev(browserSync.stream()));
-});
+/**
+ * Copy images from main image directory. NOT handle images in subdirectories.
+ */
+gulp.task('images', () => tasks.images(sources.images));
 
-gulp.task('scripts', () => {
-    const webpackConfig = {
-        'watch': dev(),
-        'output': {'filename': 'app.js'},
-        'module': {
-            'rules': [
-                {
-                    'test': /\.js$/,
-                    'exclude': /(node_modules)/,
-                    'use': {
-                        'loader': 'babel-loader',
-                        'options': {
-                            'presets': [
-                                [
-                                    'env',
-                                    {
-                                        'targets': {
-                                            'browsers': [
-                                                'last 2 versions',
-                                                'ie >= 11'
-                                            ]
-                                        }
-                                    }
-                                ]
-                            ],
-                            'plugins': [
-                                'transform-class-properties'
-                            ]
-                        }
-                    }
-                }
-            ]
-        }
-    };
+/**
+ * Handle styles, but first handle all dependencies e.g. icons, sprites and others.
+ */
+gulp.task('styles-with-dependencies', ['sprites'], () => tasks.styles(sources.styles));
 
-    return gulp.src('./src/assets/scripts/app.js')
-        .pipe(webpack(webpackConfig))
-        .pipe(gulp.dest('dist/assets/scripts/'))
-        .pipe(browserSync.stream());
-});
+/**
+ * Handle styles with one specific dependency. In that case - sprites.
+ */
+gulp.task('styles-with-sprites', ['sprites'], () => tasks.styles(sources.styles));
 
+/**
+ * Dependency free styles task.
+ */
+gulp.task('styles', () => tasks.styles(sources.styles));
 
-gulp.task('sprites', function () {
-    const spriteData = gulp.src('./src/assets/images/sprites/*.{png,jpg}')
-        .pipe(spritesmith({
-            imgName: 'sprites.png',
-            cssName: '_sprites.scss',
-            imgPath: '../../assets/images/sprites.png'
-        }));
+/**
+ * Run transpiler on javascript code and save output in ES5 format.
+ */
+gulp.task('scripts', () => tasks.scripts.esNext(sources.scripts));
 
-    const imgStream = spriteData.img
-        .pipe(dev(buffer()))
-        .pipe(dev(imagemin()))
-        .pipe(gulp.dest('./src/assets/images/'));
+/**
+ * Get all files in sprites directory, and output one sprites.png file.
+ */
+gulp.task('sprites', () => tasks.sprites(sources.sprites));
 
-    const cssStream = spriteData.css
-        .pipe(gulp.dest('./src/assets/styles/'));
+/**
+ * Handle templates, and outputs raw html.
+ */
+gulp.task('templates', () => tasks.templates.twig(sources.templates.pages));
 
-    return merge(imgStream, cssStream);
-});
+/**
+ * DEVELOPMENT. Syncs browser with current code.
+ */
+gulp.task('browser-sync', tasks.browserSync);
 
-gulp.task('templates', () => {
-    return gulp.src('./src/templates/page/*.twig')
-        .pipe(twig())
-        .pipe(htmlBeautify())
-        .pipe(gulp.dest('dist'));
-});
-
-gulp.task('browser-sync', () => {
-    browserSync({
-        server: {
-            baseDir: './dist'
-        },
-        open: 'external',
-        notify: false
-    });
-});
-
+/**
+ * DEVELOPMENT. Watch files on changes.
+ */
 gulp.task('watch', () => {
-    gulp.watch('src/assets/styles/**/*.scss', ['styles']);
-    gulp.watch('src/assets/images/**/*', ['images']);
-    gulp.watch('src/templates/**/*.twig', ['templates']);
+    gulp.watch(sources.styles, ['styles']);
+    gulp.watch(sources.sprites, ['styles-with-sprites']);
+    gulp.watch(sources.images, ['images']);
+    gulp.watch(sources.templates.all, ['templates']);
 });
 
-if (dev()) {
+if (env.development()) {
     gulp.task('default', [
         'fonts',
-        'styles',
+        'styles-with-dependencies',
         'scripts',
         'images',
         'templates',
@@ -137,7 +96,7 @@ if (dev()) {
 } else {
     gulp.task('default', [
         'fonts',
-        'styles',
+        'styles-with-dependencies',
         'scripts',
         'images',
         'templates'

@@ -1,6 +1,6 @@
 {
   "name": "fronetnd-boilerplate",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Frontend boilerplate for developing web applications.",
   "scripts": {
     "dev": "gulp --env=development",
