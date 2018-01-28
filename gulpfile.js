@@ -7,7 +7,8 @@ const tasks = {
     styles: require('./src/build/tasks/styles'),
     images: require('./src/build/tasks/images'),
     scripts: {
-        esNext: require('./src/build/tasks/scripts-es-next')
+        esNext: require('./src/build/tasks/scripts-es-next'),
+        typeScript: require('./src/build/tasks/scripts-typescript'),
     },
     sprites: require('./src/build/tasks/sprites'),
     templates: {
@@ -19,7 +20,10 @@ const sources = {
     fonts: './node_modules/font-awesome/fonts/**.*',
     icons: './src/assets/images/icons/*.svg',
     styles: './src/assets/styles/**/*.scss',
-    scripts: './src/assets/scripts/app.js',
+    scripts: {
+        js: './src/assets/scripts/app.js',
+        ts: './src/assets/scripts/app.ts',
+    },
     images: './src/assets/images/*.*',
     sprites: './src/assets/images/sprites/*.{png,jpg}',
     templates: {
@@ -70,8 +74,9 @@ gulp.task('styles', () => tasks.styles(sources.styles));
 
 /**
  * Run transpiler on javascript code and save output in ES5 format.
+ * If you want to use TypeScript, use correct task and source.
  */
-gulp.task('scripts', () => tasks.scripts.esNext(sources.scripts));
+gulp.task('scripts', () => tasks.scripts.esNext(sources.scripts.js));
 
 /**
  * Handle templates, and outputs raw html.
