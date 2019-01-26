@@ -20,3 +20,6 @@
 
 Without anything:
 - dev - 7.5KB
+
+### Info
+React, ract-dom and prettier should have exact version of packages

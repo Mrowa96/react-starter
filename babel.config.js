@@ -41,6 +41,12 @@ module.exports = function(api) {
         useBuiltIns: true,
       },
     ],
+    [
+      '@babel/plugin-proposal-optional-chaining',
+      {
+        loose: true,
+      },
+    ],
     '@babel/plugin-transform-runtime',
   ];
 
