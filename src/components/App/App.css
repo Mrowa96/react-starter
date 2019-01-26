@@ -1,3 +1,10 @@
 .App__message {
-    color: var(--mainColor);
+  background: #fff;
+  color: var(--mainColor);
+}
+
+input {
+  ::placeholder {
+    color: #000;
+  }
 }

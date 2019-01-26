@@ -23,11 +23,17 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/,
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        include: path.resolve(__dirname, 'src'),
+      },
+      {
         oneOf: [
           {
             test: /\.(js|jsx)$/,
             loader: 'babel-loader',
-            exclude: /node_modules/,
+            include: path.resolve(__dirname, 'src'),
             options: isDev
               ? {}
               : {

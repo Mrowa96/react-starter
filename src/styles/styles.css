@@ -2,34 +2,34 @@
 @custom-selector :--heading h1, h2, h3, h4, h5, h6;
 
 :root {
-    --fontSize: 1rem;
-    --mainColor: #ddd678;
-    --secondaryColor: lab(32.5 38.5 -47.6 / 90%);
+  --fontSize: 1rem;
+  --mainColor: #ddd678;
+  --secondaryColor: lab(32.5 38.5 -47.6 / 90%);
 }
 
 html {
-    overflow: hidden auto;
+  overflow: hidden auto;
 }
 
 @media (--viewport-medium) {
-    body {
-        color: var(--mainColor);
-        font-family: system-ui;
-        font-size: var(--fontSize);
-        line-height: calc(var(--fontSize) * 1.5);
-        overflow-wrap: break-word;
-        padding-inline: calc(var(--fontSize) / 2 + 1px);
-    }
+  body {
+    color: var(--mainColor);
+    font-family: system-ui;
+    font-size: var(--fontSize);
+    line-height: calc(var(--fontSize) * 1.5);
+    overflow-wrap: break-word;
+    padding-inline: calc(var(--fontSize) / 2 + 1px);
+  }
 }
 
 :--heading {
-    margin-block: 0;
+  margin-block: 0;
 }
 
 a {
-    color: rgb(0 0 100% / 90%);
+  color: rgb(0 0 100% / 90%);
 
-    &:hover {
-        color: rebeccapurple;
-    }
+  &:hover {
+    color: rebeccapurple;
+  }
 }
