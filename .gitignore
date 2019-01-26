@@ -1,7 +1,8 @@
-.idea
-.vscode
-node_modules
+# Catalogs
 dist
-src/assets/images/sprites.png
-src/assets/styles/_sprites.scss
-src/assets/styles/_icons.scss
+node_modules
+.idea
+
+# Files
+.DS_Store
+npm-debug.log*

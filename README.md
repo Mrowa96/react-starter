@@ -1,12 +1,22 @@
-#Frontend Boilerplate
+# Frontend Boilerplate
 
-### Requirements
-- nodejs >= 8.9.1
-- npm >= 5.5.1
+### What it supports out of the box?
+- standard CSS TODO add links to w3c
+- postCSS implementation
+- optimized production environment
+- dev server
 
-### Init
-- `npm i` or `npm install` 
+### TODO:
+- minimize js on prod (Terser)
+- minimize css on prod (optimize-css-assets-webpack-plugin)
+- add prettier
+- add stylelint
+- add eslint
+- png/img to sprite?
+- use webp?
+- add manifest
+- add url loader and file loader
+- add serviceworker?
 
-### Additional
-Run development server with watcher by execute command `npm run dev`
-Build production pack with command `npm run prod`
+Without anything:
+- dev - 7.5KB
