@@ -1,7 +1,7 @@
 {
   "name": "frontend-boilerplate",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Frontend boilerplate for developing basic web applications based on React.",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
@@ -10,6 +10,7 @@
   "author": "Paweł Mrowiec <work@pawel-mrowiec.pl>",
   "license": "GPLv3",
   "dependencies": {
+    "cross-env": "^5.2.0",
     "react": "16.7.0",
     "react-dom": "16.7.0"
   },
@@ -26,7 +27,6 @@
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^1.0.1",
     "copy-webpack-plugin": "^4.6.0",
-    "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "eslint": "^5.12.1",
     "eslint-config-airbnb": "^17.1.0",
@@ -36,6 +36,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.0",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
+    "favicons-webpack-plugin": "0.0.9",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.5.0",
     "postcss-loader": "^3.0.0",

@@ -2,10 +2,10 @@
   "editor.formatOnSave": true,
   "files.eol": "\n",
   "css.validate": false,
-  "less.validate": false,
-  "scss.validate": false,
   "files.associations": {
     "*.css": "postcss"
   },
-  "prettier.stylelintIntegration": true
+  "prettier.stylelintIntegration": true,
+  "prettier.eslintIntegration": true,
+  "eslint.autoFixOnSave": true,
 }

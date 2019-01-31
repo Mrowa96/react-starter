@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
+import styles from './App.css';
 
 export default () => (
   <>
-    <p className="App__message">Welcome to frontend boilerplate!</p>
-    <input type="text" />
+    <p className={styles.Message}>Welcome to frontend boilerplate!</p>
+    <input type="text" placeholder="Write something" />
   </>
 );

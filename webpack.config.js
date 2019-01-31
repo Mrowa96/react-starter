@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const ENV =
   typeof process.env.NODE_ENV !== 'undefined'
@@ -46,7 +47,13 @@ module.exports = {
             test: /\.css$/,
             use: [
               isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-              'css-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: true,
+                  importLoaders: 1,
+                },
+              },
               'postcss-loader',
             ],
           },
@@ -65,6 +72,11 @@ module.exports = {
       hash: true,
       template: './public/index.html',
       filename: 'index.html',
+    }),
+    new FaviconsWebpackPlugin({
+      logo: './public/icon.png',
+      title: 'Frontend boilerplate',
+      background: '#fff',
     }),
   ],
   devtool: isDev ? 'source-map' : false,
