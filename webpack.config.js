@@ -1,13 +1,15 @@
+require('dotenv').config();
+
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const ENV =
-  typeof process.env.NODE_ENV !== 'undefined'
-    ? process.env.NODE_ENV
-    : 'production';
+const ENV = process.env.NODE_ENV || 'production';
+const APP_TITLE = process.env.APP_TITLE || 'Frontend boilerplate';
+
 const isDev = ENV === 'development';
 
 module.exports = {
@@ -62,22 +64,29 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(['dist/*.*']),
+    new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
       filename: isDev ? '[name].css' : '[name].[contenthash].css',
       chunkFilename: isDev ? '[id].css' : '[id].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
+      title: APP_TITLE,
       inject: true,
       hash: true,
       template: './public/index.html',
       filename: 'index.html',
+      cache: true,
     }),
-    new FaviconsWebpackPlugin({
+    new WebappWebpackPlugin({
       logo: './public/icon.png',
-      title: 'Frontend boilerplate',
-      background: '#fff',
+      cache: true,
+      inject: true,
+      favicons: {
+        background: '#fff',
+        appName: APP_TITLE,
+      },
     }),
+    new OptimizeCSSAssetsPlugin(),
   ],
   devtool: isDev ? 'source-map' : false,
   devServer: {

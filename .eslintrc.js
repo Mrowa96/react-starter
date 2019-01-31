@@ -11,6 +11,7 @@ module.exports = {
   rules: {
     'consistent-return': 'off',
     'react/jsx-filename-extension': 'off',
+    'react/prop-types': 'off',
   },
   env: {
     browser: true,
