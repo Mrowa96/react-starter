@@ -14,27 +14,27 @@ const isDev = ENV === 'development';
 
 module.exports = {
   mode: ENV,
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
   resolve: {
-    extensions: ['.js', '.json', '.jsx'],
+    extensions: ['.ts', '.tsx', '.json'],
   },
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        include: path.resolve(__dirname, 'src'),
-      },
+      // {
+      //   test: /\.(ts|tsx)$/,
+      //   enforce: 'pre',
+      //   loader: 'eslint-loader',
+      //   include: path.resolve(__dirname, 'src'),
+      // },
       {
         oneOf: [
           {
-            test: /\.(js|jsx)$/,
+            test: /\.(ts|tsx)$/,
             loader: 'babel-loader',
             include: path.resolve(__dirname, 'src'),
             options: isDev

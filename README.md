@@ -15,10 +15,9 @@
 - png/img to sprite?
 - svg to icon
 - use webp?
-- add manifest
-- add url loader and file loader
 - add serviceworker?
 - add flow?
+- add tests
 
 ### Info
 

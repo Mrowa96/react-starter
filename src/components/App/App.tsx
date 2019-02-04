@@ -1,6 +1,7 @@
-import React from 'react';
-import styles from './App.css';
-import Button from '../Button/Button';
+import * as React from 'react';
+import Button from '../Button';
+
+const styles = require('./App.css');
 
 export default () => (
   <>

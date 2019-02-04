@@ -3,9 +3,10 @@
   "files.eol": "\n",
   "css.validate": false,
   "files.associations": {
-    "*.css": "postcss"
+    "*.css": "postcss",
+    "*.ts": "typescriptreact"
   },
   "prettier.stylelintIntegration": true,
   "prettier.eslintIntegration": true,
-  "eslint.autoFixOnSave": true,
+  "eslint.autoFixOnSave": true
 }
