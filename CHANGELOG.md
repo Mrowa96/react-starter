@@ -1,0 +1,47 @@
+# Version 0.3.0
+
+- Add favicon along with favicons-webpack-plugin
+- Use modules for css files
+- Add CHANGELOG
+
+# Version 0.4.0
+
+- Add css optimizer
+- Add env support
+- Add app title from env
+- Replace favicons-webpack-plugin with webapp-webpack-plugin due to vulnerabilities
+- Add style normalizer
+- Dir `dist` is now completly removed during build
+- Add Button component
+
+# Version 0.5.0
+
+- Add flow
+- Fix problems with line endings on Windows
+- Extends eslint rules
+- Rewrite component files names
+
+# Version 0.6.0
+
+- Add SvgIcon component
+- Add SpriteIcon component along with auto-transform png's to sprite
+- Add .eslintignore file
+- Add flow-typed
+- Enable dynamic import ES proposal
+
+# Version 0.9.0
+
+- Add tests with test environment
+- Add a11y eslint rules
+- Update React to 16.8.1
+- If sprite won't be found SpriteIcon component will return null
+- If svg won't be found SvgIcon will render message that svg doesn't exist.
+- Change webpack output to more minimal version
+
+# Version 2.0.0
+
+- New homepage
+- Add postcss-import for custom media support
+- Add APP_DESCRIPTION to .env.dist
+- README update
+- Remove unnecessary assets

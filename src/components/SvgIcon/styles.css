@@ -1,0 +1,9 @@
+.Icon {
+  & svg {
+    fill: #000;
+  }
+}
+
+.ProblemMessage {
+  color: red;
+}

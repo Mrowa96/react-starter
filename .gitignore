@@ -1,7 +1,11 @@
-.idea
-.vscode
-node_modules
+# Catalogs
 dist
-src/assets/images/sprites.png
-src/assets/styles/_sprites.scss
-src/assets/styles/_icons.scss
+src/styles/sprite.css
+public/sprite.png
+node_modules
+.idea
+
+# Files
+.DS_Store
+npm-debug.log*
+.env

@@ -1,0 +1,37 @@
+@import '../../styles/media.css';
+
+.Wrapper {
+  align-items: center;
+  background: var(--c-primary);
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.Title {
+  color: var(--c-white);
+  font-size: 4rem;
+  font-weight: 300;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.FeatureList {
+  margin: 0 0 1rem 0;
+  padding: 0;
+}
+
+.Feature {
+  color: var(--c-white);
+  display: block;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+@media (--small-viewport) {
+  .Wrapper {
+    padding: 1rem;
+  }
+}
