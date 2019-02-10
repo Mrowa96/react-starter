@@ -1,0 +1,10 @@
+[ignore]
+<PROJECT_ROOT>/old/.*
+<PROJECT_ROOT>/public/.*
+<PROJECT_ROOT>/tests/.*
+<PROJECT_ROOT>/node_modules/.*
+.*\.config\.js
+
+[options]
+all=true
+module.ignore_non_literal_requires=true
