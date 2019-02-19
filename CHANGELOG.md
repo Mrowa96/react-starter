@@ -45,3 +45,12 @@
 - Add APP_DESCRIPTION to .env.dist
 - README update
 - Remove unnecessary assets
+
+# Version 2.1.0
+
+- Enable postcss color function
+- Update react to v16.8.2
+- Enable eslint hooks rules
+- Fix SvgIcon display problem
+
+# Next version

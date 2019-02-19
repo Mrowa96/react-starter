@@ -1,4 +1,6 @@
 .Icon {
+  display: inline-flex;
+
   & svg {
     fill: #000;
   }

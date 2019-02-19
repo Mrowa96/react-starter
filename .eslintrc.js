@@ -11,7 +11,7 @@ module.exports = {
     'jest-enzyme',
     'plugin:jsx-a11y/recommended',
   ],
-  plugins: ['flowtype', 'react', 'prettier', 'jest', 'jsx-a11y'],
+  plugins: ['flowtype', 'react', 'prettier', 'jest', 'jsx-a11y', 'react-hooks'],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 9,
@@ -20,6 +20,7 @@ module.exports = {
     },
   },
   rules: {
+    'react-hooks/rules-of-hooks': 'error',
     'consistent-return': 'off',
     'react/jsx-filename-extension': 'off',
     'react/prop-types': 'off',

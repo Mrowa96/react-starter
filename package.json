@@ -1,7 +1,7 @@
 {
   "name": "frontend-boilerplate",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Frontend boilerplate for developing basic web applications based on React.",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
@@ -16,8 +16,8 @@
     "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",
     "modern-normalize": "^0.5.0",
-    "react": "16.8.1",
-    "react-dom": "16.8.1",
+    "react": "16.8.2",
+    "react-dom": "16.8.2",
     "react-svg-inline": "^2.1.1"
   },
   "devDependencies": {
@@ -52,6 +52,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.0",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.0.2",
     "file-loader": "^3.0.1",
     "flow-bin": "^0.92.0",
     "flow-typed": "^2.5.1",
@@ -63,6 +64,7 @@
     "mini-css-extract-plugin": "^0.5.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss": "^7.0.14",
+    "postcss-color-function": "^4.0.1",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.5.0",
