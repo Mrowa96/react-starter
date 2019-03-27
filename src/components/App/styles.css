@@ -10,8 +10,8 @@
 }
 
 .Title {
-  color: var(--c-white);
-  font-size: 4rem;
+  color: var(--c-black);
+  font-size: 5rem;
   font-weight: 300;
   margin: 0 0 1rem 0;
   text-align: center;
@@ -23,7 +23,7 @@
 }
 
 .Feature {
-  color: var(--c-white);
+  color: var(--c-black);
   display: block;
   font-size: 1.1rem;
   margin: 0.5rem 0;
@@ -33,5 +33,9 @@
 @media (--small-viewport) {
   .Wrapper {
     padding: 1rem;
+  }
+
+  .Title {
+    font-size: 3rem;
   }
 }

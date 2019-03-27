@@ -53,4 +53,11 @@
 - Enable eslint hooks rules
 - Fix SvgIcon display problem
 
+# Version 2.2.0
+
+- Rebranding to React boilerplate
+- Packages update
+- Add more flow typings
+- Redirect everything to index in development web server
+
 # Next version

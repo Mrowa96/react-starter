@@ -7,7 +7,7 @@ type Props = {
   name: string,
 };
 
-const SpriteIcon = ({ name }: Props): Element<any> | null => {
+const SpriteIcon: Function = ({ name }: Props): Element<any> | null => {
   const spriteClassName: string | null = sprite[`icon-${name}`];
 
   if (!spriteClassName) {

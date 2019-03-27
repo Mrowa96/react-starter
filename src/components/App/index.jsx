@@ -3,10 +3,10 @@ import styles from './styles.css';
 
 const App = () => (
   <main className={styles.Wrapper}>
-    <h1 className={styles.Title}>Frontend boilerplate</h1>
+    <h1 className={styles.Title}>React boilerplate</h1>
 
     <ul className={styles.FeatureList}>
-      <li className={styles.Feature}>Is based on modern React</li>
+      <li className={styles.Feature}>Uses React library as a base</li>
       <li className={styles.Feature}>
         Enables newest CSS syntax and features via PostCSS with modules
       </li>

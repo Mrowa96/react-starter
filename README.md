@@ -1,8 +1,8 @@
-# Frontend Boilerplate
+# React Boilerplate
 
 ### Features:
 
-- Is based on modern React
+- Uses React library as a base
 - Enables newest CSS syntax and features via PostCSS with modules
 - Enables newest JavaScript syntax and features via Babel
 - Extends JavaScript syntax with types from Flow
@@ -21,5 +21,5 @@
 ### Additional info:
 
 React, ract-dom and prettier should have exact version of packages
-If flow throws error about missing package run `./node-modules/.bin/flow-typed install`
+If flow throws error about missing package run `./node_modules/.bin/flow-typed install`
 Tests have to have suffix `.test` in order to eslint lint them correctly (eslint-plugin-enzyme foult)

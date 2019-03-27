@@ -10,10 +10,10 @@ const SpritesmithPlugin = require('webpack-spritesmith');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const ENV = process.env.NODE_ENV || 'production';
-const APP_TITLE = process.env.APP_TITLE || 'Frontend boilerplate';
+const APP_TITLE = process.env.APP_TITLE || 'React boilerplate';
 const APP_DESCRIPTION =
   process.env.APP_DESCRIPTION ||
-  'Frontend boilerplate for developing basic web applications based on React.';
+  'React boilerplate for developing web applications.';
 
 const isDev = ENV === 'development';
 const stats = {
@@ -87,7 +87,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: isDev ? '[name].css' : '[name].[contenthash].css',
       chunkFilename: isDev ? '[id].css' : '[id].[contenthash].css',
@@ -144,6 +144,7 @@ module.exports = {
     hot: false,
     inline: false,
     stats,
+    historyApiFallback: true,
   },
   stats,
 };

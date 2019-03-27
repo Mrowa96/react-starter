@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type Element } from 'react';
 import styles from './styles.css';
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   onClick?: Function,
 };
 
-const Button = ({ label, onClick }: Props) => (
+const Button: Function = ({ label, onClick }: Props): Element<any> => (
   <button type="button" className={styles.Button} onClick={onClick}>
     {label}
   </button>

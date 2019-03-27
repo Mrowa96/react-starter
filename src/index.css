@@ -4,8 +4,8 @@
 :root {
   --c-white: #fff;
   --c-black: #000;
-  --c-green: #01b879;
-  --c-primary: var(--c-green);
+  --c-light-blue: #61dafb;
+  --c-primary: var(--c-light-blue);
 }
 
 html,
