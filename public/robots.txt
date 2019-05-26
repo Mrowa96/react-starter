@@ -300,11 +300,3 @@ User-agent: Fetch
 Disallow: /
 User-agent: TeleportPro
 Disallow: /
-User-agent: wget
-Disallow: /
-User-agent: ia_archiver
-Disallow: /
-User-agent: archive.org_bot
-Disallow: /
-User-agent: ia_archiver-web.archive.org
-Disallow: /

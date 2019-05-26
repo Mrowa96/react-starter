@@ -1,42 +1,19 @@
 module.exports = {
   extends: [
-    'airbnb',
-    'plugin:flowtype/recommended',
-    'plugin:react/recommended',
+    'airbnb-base',
     'plugin:prettier/recommended',
     'prettier',
-    'prettier/flowtype',
-    'prettier/react',
     'prettier/standard',
-    'jest-enzyme',
-    'plugin:jsx-a11y/recommended',
   ],
-  plugins: ['flowtype', 'react', 'prettier', 'jest', 'jsx-a11y', 'react-hooks'],
+  plugins: ['prettier'],
   parser: 'babel-eslint',
   parserOptions: {
-    ecmaVersion: 9,
-    ecmaFeatures: {
-      jsx: true,
-    },
+    ecmaVersion: 10,
   },
   rules: {
-    'react-hooks/rules-of-hooks': 'error',
-    'consistent-return': 'off',
-    'react/jsx-filename-extension': 'off',
-    'react/prop-types': 'off',
-    'flowtype/no-types-missing-file-annotation': 'off',
-    'import/no-unresolved': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
   env: {
-    browser: true,
-    'jest/globals': true,
-  },
-  settings: {
-    react: {
-      version: '16',
-    },
-    flowtype: {
-      onlyFilesWithFlowAnnotation: false,
-    },
+    browser: false,
   },
 };

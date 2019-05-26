@@ -1,35 +1,35 @@
-import React, { Component, type Element } from 'react';
+import React, { Component } from 'react';
 import SVGInline from 'react-svg-inline';
 import classnames from 'classnames';
 import styles from './styles.css';
 
 type OptionalProps = {
-  height?: number,
-  customClass?: string,
+  height?: number;
+  customClass?: string;
 };
 
-type Props = OptionalProps & {
-  name: string,
-  width: number,
+type SvgIconProps = OptionalProps & {
+  name: string;
+  width: number;
 };
 
-type State = {
-  svgSource?: string,
-  hasLoadProblem?: boolean,
+type SvgIconState = {
+  svgSource?: string;
+  hasLoadProblem?: boolean;
 };
 
-export default class SvgIcon extends Component<Props, State> {
-  static defaultProps: OptionalProps = {
-    height: 0,
+export default class SvgIcon extends Component<SvgIconProps, SvgIconState> {
+  public static defaultProps: OptionalProps = {
     customClass: '',
+    height: 0,
   };
 
-  state: State = {
-    svgSource: undefined,
+  public state: SvgIconState = {
     hasLoadProblem: undefined,
+    svgSource: undefined,
   };
 
-  componentDidMount(): void {
+  public componentDidMount(): void {
     const { name } = this.props;
 
     import(`../../assets/icons/${name}.svg`)
@@ -39,7 +39,7 @@ export default class SvgIcon extends Component<Props, State> {
       .catch(() => this.setState({ hasLoadProblem: true }));
   }
 
-  render(): Element<any> | null {
+  public render() {
     const { width, height, customClass } = this.props;
     const { svgSource, hasLoadProblem } = this.state;
 
@@ -49,7 +49,6 @@ export default class SvgIcon extends Component<Props, State> {
           <SVGInline
             className={classnames(styles.Icon, customClass)}
             classSuffix="-icon"
-            cleanup
             width={`${width}px`}
             height={height ? `${height}px` : `${width}px`}
             svg={svgSource}

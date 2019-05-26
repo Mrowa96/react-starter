@@ -1,5 +1,4 @@
 @import './styles/dependencies.css';
-@import './styles/sprite.css';
 
 :root {
   --c-white: #fff;
@@ -10,11 +9,18 @@
 
 html,
 body {
+  box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   font-weight: 400;
   height: 100%;
-  min-width: 320px;
+  line-height: 1.2;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 :global {

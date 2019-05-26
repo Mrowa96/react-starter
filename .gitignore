@@ -1,9 +1,8 @@
 # Directories
 dist
-src/styles/sprite.css
-public/sprite.png
 node_modules
 .idea
+coverage
 
 # Files
 .DS_Store

@@ -60,4 +60,16 @@
 - Add more flow typings
 - Redirect everything to index in development web server
 
+# Version 3.0.0
+
+- Packages update
+- Replace Flow with TypeScript
+- Remove support for sprites, because it was usless
+- Replace enzyme with react-testing-library
+- Add new scripts for npm
+- Fix postcss bug which reavel in missing variable fallback for older browsers
+- Remove web archive entries from robots.txt
+
 # Next version
+
+- Write more tests

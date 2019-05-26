@@ -20,38 +20,9 @@ module.exports = api => {
         useBuiltIns: true,
       },
     ],
-    '@babel/preset-flow',
   ];
 
-  const plugins = [
-    [
-      '@babel/plugin-transform-destructuring',
-      {
-        useBuiltIns: true,
-      },
-    ],
-    [
-      '@babel/plugin-proposal-class-properties',
-      {
-        loose: true,
-      },
-    ],
-    [
-      '@babel/plugin-proposal-object-rest-spread',
-      {
-        useBuiltIns: true,
-      },
-    ],
-    [
-      '@babel/plugin-proposal-optional-chaining',
-      {
-        loose: true,
-      },
-    ],
-    '@babel/plugin-transform-runtime',
-    '@babel/plugin-syntax-dynamic-import',
-    'dynamic-import-node',
-  ];
+  const plugins = ['@babel/plugin-transform-runtime'];
 
   return {
     presets,

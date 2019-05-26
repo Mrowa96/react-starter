@@ -1,2 +1,2 @@
-flow-typed/**/*.js
-jest-css-modules-transform-config.js
+src/*
+tests/*

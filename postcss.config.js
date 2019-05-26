@@ -1,10 +1,11 @@
 module.exports = {
   plugins: {
-    'postcss-color-function': {},
+    autoprefixer: {},
+    'postcss-custom-properties': {},
     'postcss-import': {},
+    'postcss-color-function': {},
     'postcss-preset-env': {
       stage: 0,
     },
-    autoprefixer: {},
   },
 };
