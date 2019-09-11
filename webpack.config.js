@@ -2,13 +2,13 @@ require('dotenv').config();
 
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { WatchIgnorePlugin } = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const ENV = process.env.NODE_ENV || 'production';
 const ANALYZE_BUILD = process.env.ANALYZE_BUILD === '1';
@@ -125,6 +125,16 @@ module.exports = {
       favicons: {
         background: '#fff',
         appName: APP_TITLE,
+        icons: {
+          android: false,
+          appleIcon: false,
+          appleStartup: false,
+          coast: false,
+          favicons: true,
+          firefox: false,
+          windows: false,
+          yandex: false,
+        },
       },
     }),
     new OptimizeCSSAssetsPlugin(),

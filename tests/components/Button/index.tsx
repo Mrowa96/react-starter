@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import Button from '../../../src/components/Button';
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect';
 
 describe('Button component', () => {
   let component;
