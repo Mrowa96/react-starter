@@ -1,7 +1,7 @@
 {
   "name": "react-boilerplate",
   "private": true,
-  "version": "3.0.0",
+  "version": "3.1.1",
   "description": "React boilerplate for developing web applications.",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
