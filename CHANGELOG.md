@@ -70,6 +70,11 @@
 - Fix postcss bug which reavel in missing variable fallback for older browsers
 - Remove web archive entries from robots.txt
 
+# Version 3.1.0
+- Packages update
+- Change order of css dependencies
+- Remove few usless favicons (could be enable again anytime)
+    
 # Next version
 
 - Write more tests
