@@ -71,10 +71,16 @@
 - Remove web archive entries from robots.txt
 
 # Version 3.1.0
+
 - Packages update
 - Change order of css dependencies
 - Remove few usless favicons (could be enable again anytime)
-    
+
+# Version 3.2.0
+
+- Packages update
+- Remove postcss custom-properties and color function
+
 # Next version
 
 - Write more tests

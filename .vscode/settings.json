@@ -1,12 +1,12 @@
 {
   "editor.formatOnSave": true,
   "files.eol": "\n",
-  "javascript.validate.enable": false,
-  "css.validate": false,
   "files.associations": {
     "*.css": "postcss"
   },
-  "prettier.stylelintIntegration": true,
-  "prettier.eslintIntegration": true,
-  "eslint.autoFixOnSave": true
+  "javascript.validate.enable": false,
+  "css.validate": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }

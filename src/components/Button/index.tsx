@@ -1,14 +1,14 @@
-import React, { ReactChildren } from 'react';
+import React from 'react';
 import classnames from 'classnames';
+import ButtonProps from './typings';
 import styles from './styles.css';
 
-type ButtonProps = {
-  className?: string;
-  children: ReactChildren | string;
-  onClick?: () => void;
-};
-
-const Button = ({ children, onClick, className, ...props }: ButtonProps) => (
+const Button = ({
+  children,
+  onClick,
+  className,
+  ...props
+}: ButtonProps): JSX.Element => (
   <button
     data-testid={'button'}
     {...props}
