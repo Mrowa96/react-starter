@@ -1,8 +1,9 @@
 # Directories
 dist
 node_modules
-.idea
 coverage
+.vscode
+.idea 
 
 # Files
 .DS_Store

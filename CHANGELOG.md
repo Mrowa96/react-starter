@@ -81,6 +81,9 @@
 - Packages update
 - Remove postcss custom-properties and color function
 
-# Next version
+# Version 4.0.0
 
-- Write more tests
+- Complete rewrite
+- Remove babel dependencies
+- Add storybook
+- Add new scripts

@@ -3,21 +3,22 @@ require('dotenv').config();
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebappWebpackPlugin = require('webapp-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 const { WatchIgnorePlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { removeJsxAttributesTransformer } = require('typescript-transformer-jsx-remove-attributes');
 
 const ENV = process.env.NODE_ENV || 'production';
 const ANALYZE_BUILD = process.env.ANALYZE_BUILD === '1';
-const APP_TITLE = process.env.APP_TITLE || 'React boilerplate';
-const APP_DESCRIPTION =
-  process.env.APP_DESCRIPTION ||
-  'React boilerplate for developing web applications.';
+const APP_TITLE = process.env.APP_TITLE || 'App';
+const APP_DESCRIPTION = process.env.APP_DESCRIPTION || '';
 
 const isDev = ENV === 'development';
+const isProd = !isDev;
 const stats = {
   assets: true,
   children: false,
@@ -28,134 +29,132 @@ const stats = {
   usedExports: false,
   modules: false,
 };
-const babelLoader = {
-  loader: 'babel-loader',
-  options: isDev
-    ? {}
-    : { cacheDirectory: true, cacheCompression: true, compact: true },
-};
+const plugins = [
+  new WatchIgnorePlugin([/css\.d\.ts$/]),
+  new StylelintPlugin({
+    files: '**/*.pcss',
+  }),
+  new CleanWebpackPlugin(),
+  new MiniCssExtractPlugin({
+    filename: '[name].[contenthash].css',
+    chunkFilename: '[id].[contenthash].css',
+  }),
+  new HtmlWebpackPlugin({
+    title: APP_TITLE,
+    meta: {
+      description: APP_DESCRIPTION,
+    },
+    inject: true,
+    hash: true,
+    template: path.resolve('./src/static/index.html'),
+    filename: 'index.html',
+    cache: isProd,
+  }),
+  new FaviconsWebpackPlugin({
+    logo: path.resolve('./src/static/images/icon.png'),
+    inject: true,
+    prefix: 'assets/',
+    favicons: {
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: false,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        windows: false,
+        yandex: false,
+      },
+    },
+  }),
+  new CopyWebpackPlugin({
+    patterns: [
+      {
+        from: path.resolve('./src/static/images'),
+        to: path.resolve('./dist/images'),
+      },
+      {
+        from: path.resolve('./src/static/svg'),
+        to: path.resolve('./dist/svg'),
+      },
+      {
+        from: path.resolve('./src/static/robots.txt'),
+      },
+    ],
+  }),
+  new BundleAnalyzerPlugin({
+    analyzerMode: ANALYZE_BUILD ? 'static' : 'disabled',
+  }),
+];
+
+if (isProd) {
+  plugins.push(new OptimizeCSSAssetsPlugin());
+}
 
 module.exports = {
+  context: __dirname,
   mode: ENV,
-  entry: './src/index.tsx',
+  entry: path.resolve('./src/index.tsx'),
   output: {
     filename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, 'dist'),
+    chunkFilename: '[name].bundle.js',
+    path: path.resolve('dist'),
     publicPath: '/',
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
+    alias: {
+      '@': path.resolve('./src/'),
+    },
   },
   module: {
     rules: [
       {
-        test: /\.(ts|tsx|js|jsx)$/,
+        test: /\.(ts|tsx)$/,
         enforce: 'pre',
-        loader: 'tslint-loader',
-        include: path.resolve(__dirname, 'src'),
+        loader: 'eslint-loader',
       },
       {
-        oneOf: [
+        test: /\.(ts|tsx)$/,
+        loader: 'ts-loader',
+        options: {
+          getCustomTransformers: () => ({
+            before: [removeJsxAttributesTransformer(['data-testid'])],
+          }),
+        },
+      },
+      {
+        test: /\.pcss$/,
+        use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
-            test: /\.(ts|tsx)$/,
-            include: path.resolve(__dirname, 'src'),
-            use: [
-              babelLoader,
-              {
-                loader: 'ts-loader',
-              },
-            ],
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
           },
-          {
-            test: /\.(js|jsx)$/,
-            include: path.resolve(__dirname, 'src'),
-            use: [babelLoader],
-          },
-          {
-            test: /\.css$/,
-            use: [
-              isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-              {
-                loader: 'typings-for-css-modules-loader',
-                options: {
-                  modules: true,
-                  importLoaders: 1,
-                  namedExport: true,
-                  camelCase: true,
-                  exportOnlyLocals: true,
-                },
-              },
-              'postcss-loader',
-            ],
-          },
-          {
-            test: /\.svg$/,
-            loader: 'raw-loader',
-          },
-          {
-            test: /\.(png|jpg|gif|webp)$/,
-            loader: 'file-loader?name=i/[hash].[ext]',
-          },
+          'postcss-loader',
         ],
+      },
+      {
+        test: /\.svg$/,
+        loader: 'raw-loader',
       },
     ],
   },
-  plugins: [
-    new WatchIgnorePlugin([/css\.d\.ts$/]),
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: isDev ? '[name].css' : '[name].[contenthash].css',
-      chunkFilename: isDev ? '[id].css' : '[id].[contenthash].css',
-    }),
-    new HtmlWebpackPlugin({
-      title: APP_TITLE,
-      meta: {
-        description: APP_DESCRIPTION,
-      },
-      inject: true,
-      hash: true,
-      template: './public/index.html',
-      filename: 'index.html',
-      cache: true,
-    }),
-    new WebappWebpackPlugin({
-      logo: './public/icon.png',
-      cache: true,
-      inject: true,
-      favicons: {
-        background: '#fff',
-        appName: APP_TITLE,
-        icons: {
-          android: false,
-          appleIcon: false,
-          appleStartup: false,
-          coast: false,
-          favicons: true,
-          firefox: false,
-          windows: false,
-          yandex: false,
-        },
-      },
-    }),
-    new OptimizeCSSAssetsPlugin(),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, 'public/robots.txt'),
-        to: path.resolve(__dirname, 'dist'),
-      },
-    ]),
-    new BundleAnalyzerPlugin({
-      analyzerMode: ANALYZE_BUILD ? 'static' : 'disabled',
-    }),
-  ],
+  performance: {
+    maxEntrypointSize: 500000,
+    maxAssetSize: 300000,
+  },
+  plugins,
+  stats,
   devtool: isDev ? 'source-map' : false,
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join('dist'),
     port: 3000,
     hot: false,
     inline: false,
     stats,
     historyApiFallback: true,
   },
-  stats,
 };
