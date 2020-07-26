@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import SVGInline from 'react-svg-inline';
 import classnames from 'classnames';
-import styles from './SvgIcon.styles.pcss';
+import styles from './SvgIcon.styles.scss';
 
 type OptionalProps = {
   height?: number;

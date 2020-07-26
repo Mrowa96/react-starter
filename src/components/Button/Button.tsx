@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import ButtonProps from './Button.types';
-import styles from './Button.styles.pcss';
+import styles from './Button.styles.scss';
 
 export default function Button({ children, onClick, className, ...props }: ButtonProps): JSX.Element {
   return (

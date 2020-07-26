@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@/components/Button';
 import SvgIcon from '@/components/SvgIcon';
-import styles from './App.styles.pcss';
+import styles from './App.styles.scss';
 
 const onClick = (): void => {
   // eslint-disable-next-line no-alert
@@ -20,7 +20,9 @@ export default function App(): JSX.Element {
 
       <ul className={styles.FeatureList}>
         <li className={styles.Feature}>Uses React library as a base</li>
-        <li className={styles.Feature}>Enables newest CSS syntax and features via PostCSS with modules</li>
+        <li className={styles.Feature}>
+          Enables SASS support which could be enhanced by PostCSS plugins. Autoprefixer plugin is enabled by default
+        </li>
         <li className={styles.Feature}>Provides types support via TypeScript</li>
         <li className={styles.Feature}>Has optimized production build via Terser</li>
         <li className={styles.Feature}>Has build-in component for rendering svg icons</li>

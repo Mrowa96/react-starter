@@ -87,3 +87,4 @@
 - Remove babel dependencies
 - Add storybook
 - Add new scripts
+- Add SCSS support

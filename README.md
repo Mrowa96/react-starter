@@ -3,7 +3,7 @@
 ## Features:
 
 - Uses React library as a base
-- Enables newest CSS syntax and features via PostCSS with modules
+- Enables SASS support which could be enhanced by PostCSS plugins. Autoprefixer plugin is enabled by default.
 - Provides types support via TypeScript
 - Has optimized production build via Terser
 - Has linters which will take care of scripts, styles and formatting mistakes
@@ -14,14 +14,13 @@
 ## Information for developers
 
 - In scripts you should import modules by `import xxx from @/xxx`. `@` is resolving to `src` directory.
-- In styles you should import styles by `@import 'xxx.pcss';`. It will resolve to `src/styles` directory.
+- In styles you could import global styles by `@import 'xxx.scss';`. It will resolve to `src/styles` directory.
 - When `NODE_ENV` will be equal to `development` only one favicon will be generated - for better performance.
 - Component stories have to be placed in `ComponentName.stories.tsx` file.
 
 ### Recommended plugins to VSCode
 
 - ESLint
-- postcss-sugarss-language
 - npm Intellisense
 - Path Intellisense
 - Prettier - Code formatter
@@ -31,4 +30,3 @@
 ## TODO
 
 - Handle svg in a better way
-- Fix or replace postcss support

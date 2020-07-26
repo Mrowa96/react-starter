@@ -1,4 +1,4 @@
-declare module '*.styles.pcss' {
+declare module '*.styles.scss' {
   interface IClassNames {
     [className: string]: string;
   }

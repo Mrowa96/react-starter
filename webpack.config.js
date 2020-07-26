@@ -11,11 +11,13 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 const { WatchIgnorePlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { removeJsxAttributesTransformer } = require('typescript-transformer-jsx-remove-attributes');
+const packageInfo = require('./package.json');
 
 const ENV = process.env.NODE_ENV || 'production';
 const ANALYZE_BUILD = process.env.ANALYZE_BUILD === '1';
-const APP_TITLE = process.env.APP_TITLE || 'App';
-const APP_DESCRIPTION = process.env.APP_DESCRIPTION || '';
+const APP_PORT = process.env.APP_PORT || 3000;
+const APP_TITLE = packageInfo.name || 'App';
+const APP_DESCRIPTION = packageInfo.description || '';
 
 const isDev = ENV === 'development';
 const isProd = !isDev;
@@ -32,7 +34,7 @@ const stats = {
 const plugins = [
   new WatchIgnorePlugin([/css\.d\.ts$/]),
   new StylelintPlugin({
-    files: '**/*.pcss',
+    files: '**/*.scss',
   }),
   new CleanWebpackPlugin(),
   new MiniCssExtractPlugin({
@@ -124,16 +126,31 @@ module.exports = {
         },
       },
       {
-        test: /\.pcss$/,
+        test: /\.scss$/,
         use: [
           isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               modules: true,
+              sourceMap: true,
             },
           },
-          'postcss-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              sassOptions: {
+                includePaths: [path.resolve('./src/styles')],
+              },
+            },
+          },
         ],
       },
       {
@@ -151,7 +168,7 @@ module.exports = {
   devtool: isDev ? 'source-map' : false,
   devServer: {
     contentBase: path.join('dist'),
-    port: 3000,
+    port: APP_PORT,
     hot: false,
     inline: false,
     stats,
