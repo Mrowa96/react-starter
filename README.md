@@ -1,4 +1,4 @@
-# React Boilerplate
+# React starter
 
 ## Features:
 
