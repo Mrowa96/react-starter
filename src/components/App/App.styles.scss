@@ -1,4 +1,4 @@
-@import '../../styles/media.css';
+@import 'variables.scss';
 
 .Wrapper {
   align-items: center;
@@ -30,7 +30,7 @@
   text-align: center;
 }
 
-@media (--small-viewport) {
+@media (max-width: $smallViewport) {
   .Wrapper {
     padding: 1rem;
   }

@@ -1,17 +1,33 @@
 # React Boilerplate
 
-### Features:
+## Features:
 
 - Uses React library as a base
-- Enables newest CSS syntax and features via PostCSS with modules
+- Enables SASS support which could be enhanced by PostCSS plugins. Autoprefixer plugin is enabled by default.
 - Provides types support via TypeScript
 - Has optimized production build via Terser
-- Has build-in component for rendering svg icons
-- Has many lint rules which take care of code syntax quality
-- Has Prettier support out of the box
+- Has linters which will take care of scripts, styles and formatting mistakes
 - Ships with tests environment based on Jest and react-testing-library
-- Automatically generates manifest.json along with favicons for all environments
+- Has build-in component for rendering svg icons
+- Automatically generates favicons
 
-### Additional info:
+## Information for developers
 
-React, ract-dom and prettier should have exact version of packages
+- In scripts you should import modules by `import xxx from @/xxx`. `@` is resolving to `src` directory.
+- In styles you could import global styles by `@import 'xxx.scss';`. It will resolve to `src/styles` directory.
+- When `NODE_ENV` will be equal to `development` only one favicon will be generated - for better performance.
+- Component stories have to be placed in `ComponentName.stories.tsx` file.
+
+### Recommended plugins to VSCode
+
+- ESLint
+- npm Intellisense
+- Path Intellisense
+- Prettier - Code formatter
+- stylelint
+- VisualStudio IntelliCode
+- EJS language support
+
+## TODO
+
+- Handle svg in a better way

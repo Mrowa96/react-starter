@@ -1,19 +1,13 @@
 module.exports = {
-  extends: [
-    'airbnb-base',
-    'plugin:prettier/recommended',
-    'prettier',
-    'prettier/standard',
+  extends: ['@mrowa96/eslint-config-react/base'],
+  overrides: [
+    {
+      files: ['src/**/*.ts', 'src/**/*.tsx'],
+      extends: ['@mrowa96/eslint-config-react/typescript'],
+    },
+    {
+      files: ['**/*.test.ts', '**/*.test.tsx'],
+      extends: ['@mrowa96/eslint-config-react/typescript-test'],
+    },
   ],
-  plugins: ['prettier'],
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 10,
-  },
-  rules: {
-    'import/no-extraneous-dependencies': 'off',
-  },
-  env: {
-    browser: false,
-  },
 };
