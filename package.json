@@ -1,7 +1,7 @@
 {
   "name": "react-starter",
   "private": true,
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "React starter for basic web applications.",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server",
