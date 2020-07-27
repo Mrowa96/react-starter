@@ -46,10 +46,8 @@ const plugins = [
     meta: {
       description: APP_DESCRIPTION,
     },
-    inject: true,
     hash: true,
-    template: path.resolve('./src/static/index.html'),
-    filename: 'index.html',
+    template: path.resolve('./src/static/index.ejs'),
     cache: isProd,
   }),
   new FaviconsWebpackPlugin({

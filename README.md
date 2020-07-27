@@ -26,6 +26,7 @@
 - Prettier - Code formatter
 - stylelint
 - VisualStudio IntelliCode
+- EJS language support
 
 ## TODO
 
